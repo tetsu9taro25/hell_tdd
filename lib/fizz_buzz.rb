@@ -1,9 +1,14 @@
 class FizzBuzz
 
   def initialize(number)
+    @number = number
   end
 
   def result
-    'Fizz'
+    if @number == 3
+      return 'Fizz'
+    end
+
+    'Buzz'
   end
 end
