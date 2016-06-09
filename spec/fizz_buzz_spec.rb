@@ -1,15 +1,7 @@
 require 'fizz_buzz'
 
 describe FizzBuzz do
-  it do
-    obj = FizzBuzz.new(3)
-    result = obj.result
-    expect(result).to eq('Fizz')
-  end
+  it { expect(described_class.new(3).result).to eq('Fizz') }
 
-  it do
-    obj = FizzBuzz.new(5)
-    result = obj.result
-    expect(result).to eq('Buzz')
-  end
+  it { expect(described_class.new(5).result).to eq('Buzz') }
 end
