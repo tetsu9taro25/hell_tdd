@@ -5,6 +5,10 @@ class FizzBuzz
   end
 
   def result
+    if @number == 0
+      return 0.to_s
+    end
+
     if @number % 15 == 0
       return 'FizzBuzz'
     end
@@ -17,7 +21,7 @@ class FizzBuzz
       return 'Fizz'
     end
 
-    '2'
+    @number.to_s
 
   end
 end
