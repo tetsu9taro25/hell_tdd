@@ -5,12 +5,12 @@ class FizzBuzz
   end
 
   def result
-    if @number == 5
-      return 'Buzz'
-    end
-
     if @number == 15
       return 'FizzBuzz'
+    end
+
+    if @number % 5 == 0
+      return 'Buzz'
     end
 
     if @number % 3 == 0
