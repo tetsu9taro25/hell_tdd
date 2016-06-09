@@ -11,5 +11,7 @@ describe FizzBuzz do
 
   it { expect(described_class.new(15).result).to eq('FizzBuzz') }
 
+  it { expect(described_class.new(45).result).to eq('FizzBuzz') }
+
   it { expect(described_class.new(2).result).to eq('2') }
 end

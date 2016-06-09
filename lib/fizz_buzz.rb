@@ -5,7 +5,7 @@ class FizzBuzz
   end
 
   def result
-    if @number == 15
+    if @number % 15 == 0
       return 'FizzBuzz'
     end
 
