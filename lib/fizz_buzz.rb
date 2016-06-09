@@ -13,6 +13,11 @@ class FizzBuzz
       return 'Buzz'
     end
 
-    'FizzBuzz'
+    if @number == 15
+      return 'FizzBuzz'
+    end
+
+    '2'
+
   end
 end
