@@ -15,5 +15,7 @@ describe FizzBuzz do
 
   it { expect(described_class.new(2).result).to eq('2') }
 
+  it { expect(described_class.new(7).result).to eq('7') }
+
   it { expect(described_class.new(0).result).to eq('0') }
 end
