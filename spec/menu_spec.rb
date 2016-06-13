@@ -29,6 +29,13 @@ describe Menu do
     expect(spy.result).to eq('Fizz')
   end
 
+  it do
+    spy = StdoutSpy.new
+    obj = Menu.new(nil, spy)
+    obj.select('100')
+    expect(spy.result).to be_nil
+  end
+
   # spyを本番で使うSTDOUTにしてテストした例
   #it do
   #  spy = STDOUT

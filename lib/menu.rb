@@ -8,8 +8,10 @@ class Menu
   end
 
   def select(mode)
-    number = @input.gets
-    obj = FizzBuzz.new(number.to_i)
-    @output.print(obj.result)
+    if mode == '1'
+      number = @input.gets
+      obj = FizzBuzz.new(number.to_i)
+      @output.print(obj.result)
+    end
   end
 end
