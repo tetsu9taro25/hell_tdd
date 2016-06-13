@@ -9,7 +9,7 @@ class Menu
 
   def select(mode)
     number = @input.gets
-    obj = FizzBuzz.new(number)
+    obj = FizzBuzz.new(number.to_i)
     @output.print(obj.result)
   end
 end
