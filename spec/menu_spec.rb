@@ -31,6 +31,14 @@ describe Menu do
 
   it do
     spy = StdoutSpy.new
+    stub = StdinStub.new('0.2')
+    obj = Menu.new(stub, spy)
+    obj.select('1')
+    expect(spy.result).to eq('整数を入力してください')
+  end
+
+  it do
+    spy = StdoutSpy.new
     obj = Menu.new(nil, spy)
     obj.select('100')
     expect(spy.result).to be_nil
