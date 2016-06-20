@@ -1,7 +1,7 @@
 require 'menu'
 
 class StdoutSpy
-  def print(str)
+  def puts(str)
     @str = str
   end
 
