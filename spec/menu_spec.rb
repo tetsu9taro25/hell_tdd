@@ -3,13 +3,13 @@ require 'supports/stdout_spy'
 require 'supports/stdin_stub'
 
 describe Menu do
-  let(:spy){ StdoutSpy.new }
-  let(:stub){ StdinStub.new(input) }
-  let(:menu){ described_class.new(stub, spy) }
+  let(:spy) { StdoutSpy.new }
+  let(:stub) { StdinStub.new(input) }
+  let(:menu) { described_class.new(stub, spy) }
 
   context '1を選択する場合' do
     context '正常系' do
-      let(:input){ '3' }
+      let(:input) { '3' }
 
       it do
         menu.select('1')
@@ -18,7 +18,7 @@ describe Menu do
     end
 
     context '異常系' do
-      let(:input){ '0.2' }
+      let(:input) { '0.2' }
 
       it 'バリデーションがかかっていること' do
         menu.select('1')
@@ -28,7 +28,7 @@ describe Menu do
   end
 
   context '存在しないメニューを選択する場合' do
-    let(:input){ nil }
+    let(:input) { nil }
 
     it do
       menu.select('100')

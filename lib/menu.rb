@@ -13,8 +13,7 @@ class Menu
       @output.puts('FizzBuzzをスタートします')
       number = @input.gets
       if IntegerValidator.new(number).valid?
-        obj = FizzBuzz.new(number.to_i)
-        @output.puts(obj.result)
+        @output.puts( FizzBuzz.new(number.to_i).result )
       else
         @output.puts('整数を入力してください')
       end
