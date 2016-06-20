@@ -17,6 +17,8 @@ class Menu
       else
         @output.puts('整数を入力してください')
       end
+    elsif mode == '2'
+      @output.puts('3,Fizz')
     end
   end
 end

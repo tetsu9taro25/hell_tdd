@@ -43,4 +43,14 @@ describe Menu do
   #  obj = Menu.new(stub, spy)
   #  obj.select('1')
   #end
+
+  context '2を選択する場合' do
+    let(:input) { '3' }
+
+    it do
+      menu.select('1')
+      menu.select('2')
+      expect(spy.result).to eq('3,Fizz')
+    end
+  end
 end
