@@ -20,7 +20,7 @@ describe Menu do
     context '異常系' do
       let(:input){ '0.2' }
 
-      it do
+      it 'バリデーションがかかっていること' do
         menu.select('1')
         expect(spy.result).to eq('整数を入力してください')
       end
