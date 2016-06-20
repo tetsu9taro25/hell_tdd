@@ -1,24 +1,6 @@
 require 'menu'
-
-class StdoutSpy
-  def puts(str)
-    @str = str
-  end
-
-  def result
-    @str
-  end
-end
-
-class StdinStub
-  def initialize(input)
-    @input = input
-  end
-
-  def gets
-    @input
-  end
-end
+require 'supports/stdout_spy'
+require 'supports/stdin_stub'
 
 describe Menu do
   let(:spy){ StdoutSpy.new }
