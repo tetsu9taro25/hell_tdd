@@ -3,14 +3,13 @@ require 'integer_validator'
 
 class Menu
 
-  def initialize(input, output)
+  def initialize(input, output, memory)
     @input = input
     @output = output
   end
 
   def select(mode)
     if mode == '1'
-      @output.puts('FizzBuzzをスタートします')
       number = @input.gets
       if IntegerValidator.new(number).valid?
         @output.puts( FizzBuzz.new(number.to_i).result )

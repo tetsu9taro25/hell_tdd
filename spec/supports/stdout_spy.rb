@@ -1,7 +1,11 @@
 class StdoutSpy
 
+  def initialize
+    @str = []
+  end
+
   def puts(str)
-    @str = str
+    @str << str
   end
 
   def result

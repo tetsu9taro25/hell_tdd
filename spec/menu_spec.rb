@@ -1,11 +1,13 @@
 require 'menu'
+require 'memory'
 require 'supports/stdout_spy'
 require 'supports/stdin_stub'
 
 describe Menu do
   let(:spy) { StdoutSpy.new }
   let(:stub) { StdinStub.new(input) }
-  let(:menu) { described_class.new(stub, spy) }
+  let(:memory) { Memory.new }
+  let(:menu) { described_class.new(stub, spy, memory) }
 
   context '1を選択する場合' do
     context '正常系' do
@@ -13,7 +15,7 @@ describe Menu do
 
       it do
         menu.select('1')
-        expect(spy.result).to eq('Fizz')
+        expect(spy.result).to eq(['Fizz'])
       end
     end
 
@@ -22,7 +24,7 @@ describe Menu do
 
       it 'バリデーションがかかっていること' do
         menu.select('1')
-        expect(spy.result).to eq('整数を入力してください')
+        expect(spy.result).to eq(['整数を入力してください'])
       end
     end
   end
@@ -32,7 +34,7 @@ describe Menu do
 
     it do
       menu.select('100')
-      expect(spy.result).to be_nil
+      expect(spy.result).to be_empty
     end
   end
 
@@ -45,12 +47,23 @@ describe Menu do
   #end
 
   context '2を選択する場合' do
-    let(:input) { '3' }
+    context '1回FizzBuzzゲームをした場合' do
+      let(:input) { '3' }
 
-    it do
-      menu.select('1')
-      menu.select('2')
-      expect(spy.result).to eq('3,Fizz')
+      it do
+        memory.add('3,Fizz')
+        menu.select('2')
+        expect(spy.result).to eq(['3,Fizz'])
+      end
+    end
+
+    xcontext '2回FizzBuzzゲームをした場合' do
+      it do
+        memory.add('3,Fizz')
+        memory.add('5,Buzz')
+        menu.select('2')
+        expect(spy.result).to eq(['3,Fizz','5,Buzz'])
+      end
     end
   end
 end
