@@ -6,6 +6,7 @@ class Menu
   def initialize(input, output, memory)
     @input = input
     @output = output
+    @memory = memory
   end
 
   def select(mode)
@@ -17,7 +18,9 @@ class Menu
         @output.puts('整数を入力してください')
       end
     elsif mode == '2'
-      @output.puts('3,Fizz')
+      @memory.get.each do |m|
+        @output.puts(m)
+      end
     end
   end
 end

@@ -47,23 +47,19 @@ describe Menu do
   #end
 
   context '2を選択する場合' do
-    context '1回FizzBuzzゲームをした場合' do
-      let(:input) { '3' }
+    let(:input) { nil }
 
-      it do
-        memory.add('3,Fizz')
-        menu.select('2')
-        expect(spy.result).to eq(['3,Fizz'])
-      end
+    it do
+      memory.add('3,Fizz')
+      menu.select('2')
+      expect(spy.result).to eq(['3,Fizz'])
     end
 
-    xcontext '2回FizzBuzzゲームをした場合' do
-      it do
-        memory.add('3,Fizz')
-        memory.add('5,Buzz')
-        menu.select('2')
-        expect(spy.result).to eq(['3,Fizz','5,Buzz'])
-      end
+    it do
+      memory.add('3,Fizz')
+      memory.add('5,Buzz')
+      menu.select('2')
+      expect(spy.result).to eq(['3,Fizz','5,Buzz'])
     end
   end
 end
