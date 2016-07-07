@@ -15,7 +15,11 @@ describe Menu do
 
       it do
         menu.select('1')
-        expect(spy.result).to eq(['Fizz'])
+
+        aggregate_failures do
+          expect(spy.result).to eq(['Fizz'])
+          expect(memory.get).to eq(["#{input},Fizz"])
+        end
       end
     end
 
