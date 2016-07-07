@@ -30,4 +30,8 @@ describe FizzBuzz do
       it { expect(described_class.new(0).result).to eq('0') }
     end
   end
+
+  describe '#to_s' do
+    it { expect(described_class.new(3).to_s).to eq('3,Fizz') }
+  end
 end
