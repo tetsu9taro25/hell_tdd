@@ -24,4 +24,8 @@ class FizzBuzz
     @number.to_s
 
   end
+
+  def to_s
+    "#{@number},#{result}"
+  end
 end

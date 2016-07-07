@@ -14,8 +14,8 @@ class Menu
       number = @input.gets
       if IntegerValidator.new(number).valid?
         fizzbuzz = FizzBuzz.new(number.to_i)
-        @output.puts( fizzbuzz.result )
-        @memory.add( "#{number.to_i},#{fizzbuzz.result}" )
+        @output.puts(fizzbuzz.result)
+        @memory.add(fizzbuzz.to_s)
       else
         @output.puts('整数を入力してください')
       end

@@ -16,9 +16,10 @@ describe Menu do
       it do
         menu.select('1')
 
+        fizzbuzz = FizzBuzz.new(input.to_i)
         aggregate_failures do
-          expect(spy.result).to eq(['Fizz'])
-          expect(memory.get).to eq(["#{input},Fizz"])
+          expect(spy.result).to eq([fizzbuzz.result])
+          expect(memory.get).to eq([fizzbuzz.to_s])
         end
       end
     end
@@ -54,16 +55,19 @@ describe Menu do
     let(:input) { nil }
 
     it do
-      memory.add('3,Fizz')
+      fizzbuzz = FizzBuzz.new(3)
+      memory.add(fizzbuzz.to_s)
       menu.select('2')
-      expect(spy.result).to eq(['3,Fizz'])
+      expect(spy.result).to eq([fizzbuzz.to_s])
     end
 
     it do
-      memory.add('3,Fizz')
-      memory.add('5,Buzz')
+      fizz = FizzBuzz.new(3)
+      buzz = FizzBuzz.new(5)
+      memory.add(fizz.to_s)
+      memory.add(buzz.to_s)
       menu.select('2')
-      expect(spy.result).to eq(['3,Fizz','5,Buzz'])
+      expect(spy.result).to eq([fizz.to_s, buzz.to_s])
     end
   end
 end
