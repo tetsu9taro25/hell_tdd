@@ -1,14 +1,14 @@
-class StdoutSpy
+class Memory
 
   def initialize
     @str = []
   end
 
-  def puts(str)
+  def add(str)
     @str << str
   end
 
-  def result
-    @str
+  def get
+    @str.dup
   end
 end
