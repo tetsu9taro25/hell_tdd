@@ -55,13 +55,6 @@ describe Menu do
     let(:input) { nil }
 
     it do
-      fizzbuzz = FizzBuzz.new(3)
-      memory.add(fizzbuzz.to_s)
-      menu.select('2')
-      expect(spy.result).to eq([fizzbuzz.to_s])
-    end
-
-    it do
       fizz = FizzBuzz.new(3)
       buzz = FizzBuzz.new(5)
       memory.add(fizz.to_s)
