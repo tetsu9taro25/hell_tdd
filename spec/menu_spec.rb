@@ -64,8 +64,12 @@ describe Menu do
     end
   end
 
-  context '3を選択する場合' do
+  context '4を選択する場合' do
     let(:input) { nil }
+    let(:file_path) { 'test.txt' }
+
+    before { delete_file }
+    after { delete_file }
 
     it do
       fizzbuzz = FizzBuzz.new(3)
@@ -74,5 +78,11 @@ describe Menu do
       menu.select('4')
       expect(spy.result).to eq(memory.get)
     end
+
+    private
+
+      def delete_file
+        File.unlink file_path if File.exist?(file_path)
+      end
   end
 end
