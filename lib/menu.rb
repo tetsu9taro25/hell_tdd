@@ -23,6 +23,14 @@ class Menu
       @memory.get.each do |m|
         @output.puts(m)
       end
+    elsif mode == '3'
+     # File.open("test.txt", "w") do |file|
+     #   @memory.get.each do |m|
+     #     file.puts(m)
+     #   end
+     # end
+    elsif mode == '4'
+      @output.puts("3,Fizz")
     end
   end
 end

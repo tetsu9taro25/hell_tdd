@@ -63,4 +63,16 @@ describe Menu do
       expect(spy.result).to eq([fizz.to_s, buzz.to_s])
     end
   end
+
+  context '3を選択する場合' do
+    let(:input) { nil }
+
+    it do
+      fizzbuzz = FizzBuzz.new(3)
+      memory.add(fizzbuzz.to_s)
+      menu.select('3')
+      menu.select('4')
+      expect(spy.result).to eq(memory.get)
+    end
+  end
 end
