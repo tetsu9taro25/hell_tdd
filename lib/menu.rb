@@ -1,5 +1,6 @@
 require 'fizz_buzz'
 require 'integer_validator'
+require 'history_repository'
 
 class Menu
 
@@ -25,18 +26,9 @@ class Menu
         @output.puts(m)
       end
     elsif mode == '3'
-      File.open(@file_path, "w") do |file|
-        @memory.get.each do |m|
-          file.puts(m)
-        end
-      end
+      HistoryRepository.new(@file_path).save(@memory.get)
     elsif mode == '4'
-      return unless File.exist?(@file_path)
-      File.open(@file_path) do |f|
-        f.each do |s|
-          @output.puts(s.chomp)
-        end
-      end
+      HistoryRepository.new(@file_path).all.each { |s| @output.puts(s) }
     end
   end
 end

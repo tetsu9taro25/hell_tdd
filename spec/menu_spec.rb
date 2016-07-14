@@ -71,7 +71,6 @@ describe Menu do
     let(:input) { nil }
 
     context 'ファイルを保存しなかった場合' do
-
       it do
         menu.select('4')
         expect(spy.result).to be_empty
