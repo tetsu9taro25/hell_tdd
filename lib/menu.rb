@@ -31,6 +31,7 @@ class Menu
         end
       end
     elsif mode == '4'
+      return unless File.exist?(@file_path)
       File.open(@file_path) do |f|
         f.each do |s|
           @output.puts(s.chomp)

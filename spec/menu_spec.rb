@@ -66,18 +66,28 @@ describe Menu do
   end
 
   context '4を選択する場合' do
-    let(:input) { nil }
-    let(:file_path) { 'test.txt' }
-
     before { delete_file }
-    after { delete_file }
 
-    it do
-      fizzbuzz = FizzBuzz.new(3)
-      memory.add(fizzbuzz.to_s)
-      menu.select('3')
-      menu.select('4')
-      expect(spy.result).to eq(memory.get)
+    let(:input) { nil }
+
+    context 'ファイルを保存しなかった場合' do
+
+      it do
+        menu.select('4')
+        expect(spy.result).to be_empty
+      end
+    end
+
+    context 'ファイルを保存した場合' do
+      after { delete_file }
+
+      it do
+        fizzbuzz = FizzBuzz.new(3)
+        memory.add(fizzbuzz.to_s)
+        menu.select('3')
+        menu.select('4')
+        expect(spy.result).to eq(memory.get)
+      end
     end
 
     private
@@ -86,4 +96,5 @@ describe Menu do
         File.unlink file_path if File.exist?(file_path)
       end
   end
+
 end
