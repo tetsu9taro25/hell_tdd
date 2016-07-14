@@ -8,7 +8,7 @@ class Menu
     @input = input
     @output = output
     @memory = memory
-    @file_path = file_path
+    @history_repository = HistoryRepository.new(file_path)
   end
 
   def select(mode)
@@ -26,9 +26,9 @@ class Menu
         @output.puts(m)
       end
     elsif mode == '3'
-      HistoryRepository.new(@file_path).save(@memory.get)
+      @history_repository.save(@memory.get)
     elsif mode == '4'
-      HistoryRepository.new(@file_path).all.each { |s| @output.puts(s) }
+      @history_repository.all.each { |s| @output.puts(s) }
     end
   end
 end
