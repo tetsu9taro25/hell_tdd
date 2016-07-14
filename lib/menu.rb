@@ -3,10 +3,11 @@ require 'integer_validator'
 
 class Menu
 
-  def initialize(input, output, memory)
+  def initialize(input, output, memory, file_path)
     @input = input
     @output = output
     @memory = memory
+    @file_path = file_path
   end
 
   def select(mode)
@@ -24,13 +25,13 @@ class Menu
         @output.puts(m)
       end
     elsif mode == '3'
-      File.open("test.txt", "w") do |file|
+      File.open(@file_path, "w") do |file|
         @memory.get.each do |m|
           file.puts(m)
         end
       end
     elsif mode == '4'
-      File.open("test.txt") do |f|
+      File.open(@file_path) do |f|
         f.each do |s|
           @output.puts(s.chomp)
         end

@@ -1,4 +1,7 @@
 require 'menu'
+require 'memory'
+
+menu = Menu.new(STDIN, STDOUT, Memory.new, 'product.txt')
 
 while true do
   puts 'メニューを選んでください。'
@@ -6,6 +9,6 @@ while true do
 
   break if number == '0'
 
-  Menu.new(STDIN, STDOUT).select(number)
+  menu.select(number)
 
 end
