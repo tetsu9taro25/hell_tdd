@@ -1,6 +1,5 @@
 require 'fizz_buzz'
 require 'integer_validator'
-require 'history_repository'
 
 class Menu
 
