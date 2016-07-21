@@ -3,10 +3,11 @@ require 'integer_validator'
 
 class Menu
 
-  def initialize(input, output, memory)
+  def initialize(input, output, memory, history_repository)
     @input = input
     @output = output
     @memory = memory
+    @history_repository = history_repository
   end
 
   def select(mode)
@@ -23,6 +24,10 @@ class Menu
       @memory.get.each do |m|
         @output.puts(m)
       end
+    elsif mode == '3'
+      @history_repository.save(@memory.get)
+    elsif mode == '4'
+      @history_repository.all.each { |s| @output.puts(s) }
     end
   end
 end

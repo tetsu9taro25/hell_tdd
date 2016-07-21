@@ -7,7 +7,9 @@ describe Menu do
   let(:spy) { StdoutSpy.new }
   let(:stub) { StdinStub.new(input) }
   let(:memory) { Memory.new }
-  let(:menu) { described_class.new(stub, spy, memory) }
+  let(:file_path) { 'test.txt' }
+  let(:history_repository){ HistoryRepository.new(file_path) }
+  let(:menu) { described_class.new(stub, spy, memory, history_repository) }
 
   context '1を選択する場合' do
     context '正常系' do
@@ -63,4 +65,36 @@ describe Menu do
       expect(spy.result).to eq([fizz.to_s, buzz.to_s])
     end
   end
+
+  context '4を選択する場合' do
+    before { delete_file }
+
+    let(:input) { nil }
+
+    context 'ファイルを保存しなかった場合' do
+      it do
+        menu.select('4')
+        expect(spy.result).to be_empty
+      end
+    end
+
+    context 'ファイルを保存した場合' do
+      after { delete_file }
+
+      it do
+        fizzbuzz = FizzBuzz.new(3)
+        memory.add(fizzbuzz.to_s)
+        menu.select('3')
+        menu.select('4')
+        expect(spy.result).to eq(memory.get)
+      end
+    end
+
+    private
+
+      def delete_file
+        File.unlink file_path if File.exist?(file_path)
+      end
+  end
+
 end
