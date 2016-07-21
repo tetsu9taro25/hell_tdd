@@ -3,10 +3,9 @@ require 'integer_validator'
 
 class Menu
 
-  def initialize(input, output, memory, history_repository)
+  def initialize(input, output, history_repository)
     @input = input
     @output = output
-    @memory = memory
     @history_repository = history_repository
   end
 
@@ -16,16 +15,16 @@ class Menu
       if IntegerValidator.new(number).valid?
         fizzbuzz = FizzBuzz.new(number.to_i)
         @output.puts(fizzbuzz.result)
-        @memory.add(fizzbuzz.to_s)
+        @history_repository.add(fizzbuzz.to_s)
       else
         @output.puts('整数を入力してください')
       end
     elsif mode == '2'
-      @memory.get.each do |m|
+      @history_repository.current_history.each do |m|
         @output.puts(m)
       end
     elsif mode == '3'
-      @history_repository.save(@memory.get)
+      @history_repository.save
     elsif mode == '4'
       @history_repository.all.each { |s| @output.puts(s) }
     end

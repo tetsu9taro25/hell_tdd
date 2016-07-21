@@ -1,8 +1,7 @@
 require 'menu'
-require 'memory'
 require 'history_repository'
 
-menu = Menu.new(STDIN, STDOUT, Memory.new, HistoryRepository.new('product.txt'))
+menu = Menu.new(STDIN, STDOUT, HistoryRepository.new('product.txt'))
 
 while true do
   puts 'メニューを選んでください。'

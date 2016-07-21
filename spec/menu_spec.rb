@@ -1,15 +1,14 @@
 require 'menu'
-require 'memory'
 require 'supports/stdout_spy'
 require 'supports/stdin_stub'
+require 'history_repository'
 
 describe Menu do
   let(:spy) { StdoutSpy.new }
   let(:stub) { StdinStub.new(input) }
-  let(:memory) { Memory.new }
   let(:file_path) { 'test.txt' }
   let(:history_repository){ HistoryRepository.new(file_path) }
-  let(:menu) { described_class.new(stub, spy, memory, history_repository) }
+  let(:menu) { described_class.new(stub, spy, history_repository) }
 
   context '1を選択する場合' do
     context '正常系' do
@@ -21,7 +20,7 @@ describe Menu do
         fizzbuzz = FizzBuzz.new(input.to_i)
         aggregate_failures do
           expect(spy.result).to eq([fizzbuzz.result])
-          expect(memory.get).to eq([fizzbuzz.to_s])
+          expect(history_repository.current_history).to eq([fizzbuzz.to_s])
         end
       end
     end
@@ -59,8 +58,8 @@ describe Menu do
     it do
       fizz = FizzBuzz.new(3)
       buzz = FizzBuzz.new(5)
-      memory.add(fizz.to_s)
-      memory.add(buzz.to_s)
+      history_repository.add(fizz.to_s)
+      history_repository.add(buzz.to_s)
       menu.select('2')
       expect(spy.result).to eq([fizz.to_s, buzz.to_s])
     end
@@ -83,10 +82,10 @@ describe Menu do
 
       it do
         fizzbuzz = FizzBuzz.new(3)
-        memory.add(fizzbuzz.to_s)
+        history_repository.add(fizzbuzz.to_s)
         menu.select('3')
         menu.select('4')
-        expect(spy.result).to eq(memory.get)
+        expect(spy.result).to eq(history_repository.current_history)
       end
     end
 

@@ -1,11 +1,20 @@
 class HistoryRepository
   def initialize(file_path)
     @file_path = file_path
+    @histories = []
   end
 
-  def save(histories)
+  def add(histories)
+    @histories << histories
+  end
+
+  def current_history
+    @histories.dup
+  end
+
+  def save
     File.open(@file_path, "w") do |file|
-      histories.each do |h|
+      @histories.each do |h|
         file.puts(h)
       end
     end
