@@ -20,7 +20,7 @@ describe Menu do
         fizzbuzz = FizzBuzz.new(input.to_i)
         aggregate_failures do
           expect(spy.result).to eq([fizzbuzz.result])
-          expect(history_repository.current_history).to eq([fizzbuzz.to_s])
+          expect(history_repository.current_history.map{ |f| f.to_s }).to eq([fizzbuzz.to_s])
         end
       end
     end
@@ -47,7 +47,7 @@ describe Menu do
   # spyを本番で使うSTDOUTにしてテストした例
   #it do
   #  spy = STDOUT
-  #  stub = StdinStub.new('3')
+  
   #  obj = Menu.new(stub, spy)
   #  obj.select('1')
   #end
@@ -82,10 +82,10 @@ describe Menu do
 
       it do
         fizzbuzz = FizzBuzz.new(3)
-        history_repository.add(fizzbuzz.to_s)
+        history_repository.add(fizzbuzz)
         menu.select('3')
         menu.select('4')
-        expect(spy.result).to eq(history_repository.current_history)
+        expect(spy.result).to eq(history_repository.current_history.map{ |f| f.to_s })
       end
     end
 

@@ -15,7 +15,7 @@ class HistoryRepository
   def save
     File.open(@file_path, "w") do |file|
       @histories.each do |h|
-        file.puts(h)
+        file.puts(h.number)
       end
     end
   end
@@ -25,7 +25,7 @@ class HistoryRepository
     histories = []
     File.open(@file_path) do |f|
       f.each do |s|
-        histories << s.chomp
+        histories << FizzBuzz.new(s.to_i)
       end
     end
     histories

@@ -15,18 +15,18 @@ class Menu
       if IntegerValidator.new(number).valid?
         fizzbuzz = FizzBuzz.new(number.to_i)
         @output.puts(fizzbuzz.result)
-        @history_repository.add(fizzbuzz.to_s)
+        @history_repository.add(fizzbuzz)
       else
         @output.puts('整数を入力してください')
       end
     elsif mode == '2'
       @history_repository.current_history.each do |m|
-        @output.puts(m)
+        @output.puts(m.to_s)
       end
     elsif mode == '3'
       @history_repository.save
     elsif mode == '4'
-      @history_repository.all.each { |s| @output.puts(s) }
+      @history_repository.all.each { |s| @output.puts(s.to_s) }
     end
   end
 end

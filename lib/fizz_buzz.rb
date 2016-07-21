@@ -1,4 +1,5 @@
 class FizzBuzz
+  attr_reader :number
 
   def initialize(number)
     @number = number
