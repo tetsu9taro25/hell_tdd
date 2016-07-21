@@ -4,11 +4,11 @@ require 'history_repository'
 
 class Menu
 
-  def initialize(input, output, memory, file_path)
+  def initialize(input, output, memory, history_repository)
     @input = input
     @output = output
     @memory = memory
-    @history_repository = HistoryRepository.new(file_path)
+    @history_repository = history_repository
   end
 
   def select(mode)

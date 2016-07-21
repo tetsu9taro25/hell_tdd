@@ -8,7 +8,8 @@ describe Menu do
   let(:stub) { StdinStub.new(input) }
   let(:memory) { Memory.new }
   let(:file_path) { 'test.txt' }
-  let(:menu) { described_class.new(stub, spy, memory, file_path) }
+  let(:history_repository){ HistoryRepository.new(file_path) }
+  let(:menu) { described_class.new(stub, spy, memory, history_repository) }
 
   context '1を選択する場合' do
     context '正常系' do
